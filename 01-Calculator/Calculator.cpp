@@ -1,43 +1,20 @@
-#include <cctype>
-#include <iomanip>
 #include <iostream>
-
-#ifdef _WIN32
-#include <windows.h>
-#endif
 
 int main()
 {
-#ifdef _WIN32
-    SetConsoleOutputCP(CP_UTF8);
-#endif
-
     int first = 0;
     int second = 0;
-    std::cout << "Введите два числа:\n";
-    if (!(std::cin >> first >> second) || (!std::cin.eof() && !std::isspace(std::cin.peek())))
-    {
-        std::cerr << "Ошибка: введите два целых числа.\n";
-        return 1;
-    }
+    std::cout << "Введите два целых числа. Второе должно быть ненулевым.\n";
+    std::cin >> first >> second;
 
-    const auto wideFirst = static_cast<long long>(first);
+    const long long wideFirst = first;
+    const double dividend = first;
     std::cout << "\nРезультаты математических и логических операций:\n"
               << first << " + " << second << " = " << wideFirst + second << '\n'
               << first << " - " << second << " = " << wideFirst - second << '\n'
               << first << " * " << second << " = " << wideFirst * second << '\n'
-              << first << " / " << second << " = ";
-
-    if (second == 0)
-    {
-        std::cout << "деление на ноль невозможно\n";
-    }
-    else
-    {
-        std::cout << std::setprecision(15) << static_cast<double>(first) / second << '\n';
-    }
-
-    std::cout << first << " & " << second << " = " << (first & second) << '\n'
+              << first << " / " << second << " = " << dividend / second << '\n'
+              << first << " & " << second << " = " << (first & second) << '\n'
               << first << " | " << second << " = " << (first | second) << '\n'
               << first << " ^ " << second << " = " << (first ^ second) << '\n';
     return 0;
