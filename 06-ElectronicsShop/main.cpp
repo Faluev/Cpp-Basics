@@ -1,27 +1,7 @@
-#include <cstddef>
 #include <iostream>
 #include <string>
 
 #include "Products.h"
-
-int readProductNumber(const std::string& line)
-{
-    int number = -1;
-    for (std::size_t i = 0; i < line.size(); ++i)
-    {
-        const char symbol = line[i];
-        if (symbol == ' ' || symbol == '\t' || symbol == '\r')
-        {
-            continue;
-        }
-        if (number != -1 || symbol < '0' || symbol > '9')
-        {
-            return -1;
-        }
-        number = symbol - '0';
-    }
-    return number;
-}
 
 int main()
 {
@@ -41,17 +21,13 @@ int main()
         }
         std::cout << "0. Выход\nВыберите номер товара: ";
 
-        std::string line;
-        if (!std::getline(std::cin, line))
+        std::string choice;
+        if (!(std::cin >> choice) || choice == "0")
         {
             break;
         }
 
-        const int number = readProductNumber(line);
-        if (number == 0)
-        {
-            break;
-        }
+        const int number = choice.size() == 1 ? choice[0] - '0' : -1;
         if (number < 1 || number > stockSize)
         {
             std::cout << "Введите номер из списка.\n";
