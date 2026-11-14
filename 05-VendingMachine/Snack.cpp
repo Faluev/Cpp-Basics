@@ -1,8 +1,8 @@
 #include "Snack.h"
 
-Snack::Snack(const std::string& name, int price, int calories)
+Snack::Snack(const std::string& snackName, int price, int calories)
 {
-    this->name = name;
+    name = snackName;
     setPrice(price);
     setCalories(calories);
 }

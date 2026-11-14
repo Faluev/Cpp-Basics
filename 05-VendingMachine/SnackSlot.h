@@ -5,16 +5,17 @@
 class SnackSlot
 {
 public:
-    SnackSlot(int capacity);
+    SnackSlot(int maxSnacks);
     ~SnackSlot();
 
+    // Лоток хранит адрес товара. Товар удаляет код, который его создал.
     bool addSnack(Snack* snack);
     Snack* takeSnack();
     int getSnackCount() const;
     int getEmptySpacesCount() const;
 
 private:
-    // Доступ к копированию закрыт, чтобы массив принадлежал одному лотку.
+    // Запрещаем копировать лоток, чтобы каждый массив удалялся один раз.
     SnackSlot(const SnackSlot& other);
     SnackSlot& operator=(const SnackSlot& other);
 

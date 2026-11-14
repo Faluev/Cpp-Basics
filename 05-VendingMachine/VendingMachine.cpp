@@ -1,15 +1,14 @@
 #include "VendingMachine.h"
 
-VendingMachine::VendingMachine(int slotCount)
+VendingMachine::VendingMachine(int maxSlots)
 {
-    capacity = slotCount > 0 ? slotCount : 0;
-    this->slotCount = 0;
+    capacity = maxSlots > 0 ? maxSlots : 0;
+    slotCount = 0;
     slots = new SnackSlot*[capacity];
 }
 
 VendingMachine::~VendingMachine()
 {
-    // Лотки удаляет вызывающий код, который их создал.
     delete[] slots;
 }
 

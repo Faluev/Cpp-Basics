@@ -5,15 +5,16 @@
 class VendingMachine
 {
 public:
-    VendingMachine(int slotCount);
+    VendingMachine(int maxSlots);
     ~VendingMachine();
 
+    // Автомат хранит адрес лотка. Лоток удаляет код, который его создал.
     bool addSlot(SnackSlot* slot);
     int getEmptySlotsCount() const;
     Snack* vend(int slotIndex);
 
 private:
-    // Доступ к копированию закрыт, чтобы массив принадлежал одному автомату.
+    // Запрещаем копировать автомат, чтобы каждый массив удалялся один раз.
     VendingMachine(const VendingMachine& other);
     VendingMachine& operator=(const VendingMachine& other);
 

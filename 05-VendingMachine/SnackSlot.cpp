@@ -1,15 +1,14 @@
 #include "SnackSlot.h"
 
-SnackSlot::SnackSlot(int capacity)
+SnackSlot::SnackSlot(int maxSnacks)
 {
-    this->capacity = capacity > 0 ? capacity : 0;
+    capacity = maxSnacks > 0 ? maxSnacks : 0;
     snackCount = 0;
-    snacks = new Snack*[this->capacity];
+    snacks = new Snack*[capacity];
 }
 
 SnackSlot::~SnackSlot()
 {
-    // Товары остаются у вызывающего кода, который их создал.
     delete[] snacks;
 }
 
