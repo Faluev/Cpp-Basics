@@ -15,15 +15,10 @@ int main()
 {
     int first = 0;
     int second = 0;
-    std::cout << "Введите два целых числа. Второе должно быть ненулевым.\n";
+    std::cout << "Введите два целых числа.\n";
     if (!readInteger(first) || !readInteger(second))
     {
         std::cout << "Ошибка ввода. Ожидались два целых числа.\n";
-        return 1;
-    }
-    if (second == 0)
-    {
-        std::cout << "Деление на ноль невозможно.\n";
         return 1;
     }
 
@@ -32,9 +27,16 @@ int main()
     std::cout << "\nРезультаты математических и логических операций:\n"
               << first << " + " << second << " = " << wideFirst + second << '\n'
               << first << " - " << second << " = " << wideFirst - second << '\n'
-              << first << " * " << second << " = " << wideFirst * second << '\n'
-              << first << " / " << second << " = " << dividend / second << '\n'
-              << first << " & " << second << " = " << (first & second) << '\n'
+              << first << " * " << second << " = " << wideFirst * second << '\n';
+    if (second == 0)
+    {
+        std::cout << "Деление на ноль невозможно.\n";
+    }
+    else
+    {
+        std::cout << first << " / " << second << " = " << dividend / second << '\n';
+    }
+    std::cout << first << " & " << second << " = " << (first & second) << '\n'
               << first << " | " << second << " = " << (first | second) << '\n'
               << first << " ^ " << second << " = " << (first ^ second) << '\n';
     return 0;
