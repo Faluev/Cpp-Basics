@@ -1,5 +1,17 @@
+#include <cctype>
 #include <climits>
 #include <iostream>
+#include <limits>
+
+bool readInteger(int& value)
+{
+    if (!(std::cin >> value))
+    {
+        return false;
+    }
+    const int next = std::cin.peek();
+    return next == std::char_traits<char>::eof() || std::isspace(next);
+}
 
 int main()
 {
@@ -22,10 +34,12 @@ int main()
         int first = 0;
         int second = 0;
         std::cout << (operation == '!' ? "Введите целое число: " : "Введите два целых числа: ");
-        if (!(std::cin >> first) || (operation != '!' && !(std::cin >> second)))
+        if (!readInteger(first) || (operation != '!' && !readInteger(second)))
         {
             std::cout << "Ошибка ввода. Ожидались целые числа.\n";
-            break;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
         }
 
         const long long wideFirst = first;

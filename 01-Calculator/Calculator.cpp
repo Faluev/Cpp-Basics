@@ -1,11 +1,31 @@
+#include <cctype>
 #include <iostream>
+
+bool readInteger(int& value)
+{
+    if (!(std::cin >> value))
+    {
+        return false;
+    }
+    const int next = std::cin.peek();
+    return next == std::char_traits<char>::eof() || std::isspace(next);
+}
 
 int main()
 {
     int first = 0;
     int second = 0;
     std::cout << "Введите два целых числа. Второе должно быть ненулевым.\n";
-    std::cin >> first >> second;
+    if (!readInteger(first) || !readInteger(second))
+    {
+        std::cout << "Ошибка ввода. Ожидались два целых числа.\n";
+        return 1;
+    }
+    if (second == 0)
+    {
+        std::cout << "Деление на ноль невозможно.\n";
+        return 1;
+    }
 
     const long long wideFirst = first;
     const double dividend = first;
